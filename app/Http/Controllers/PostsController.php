@@ -14,12 +14,12 @@ Class PostsController extends Controller
 
   public function index(){
       
-    return view('posts.index');
+    $posts = Post::all();
+    return view('posts.index',['posts'=> $posts]);
   }
   public function show($id){
-    
-    $post = Post::find($id);
-    
+   
+    $post = Post::findorfail($id);
     return view('posts.show',['post'=> $post]);
 
   }
@@ -30,9 +30,10 @@ Class PostsController extends Controller
   }
 
   public function edit($id){
-      
-    //return view('posts.index');
-  }
+   
+    $post = Post::findOrFail($id);  
+    return view('posts.edit',['post'=> $post]);
+  } 
   public function store(StorePost $request){ 
   // if Request is Passed 
   //   $validated = $request->validate([
@@ -57,17 +58,33 @@ Class PostsController extends Controller
       
       session()->flash('status','The Post was saved');
       
-     return redirect()->route('posts.show',['post'=> $post->id]);
+     return redirect()->route('posts.show',['post' =>  $post->id]);
   
   }
 
-  public function distroy($id)
+  public function destroy($id)
   {
+    $post = Post::findorfail($id);
+    
+    $post->delete();
 
+    session()->flash('status','Post Deleted Successfully');
+    
+    return redirect()->route('posts.indexp');
   }
-  public function update(){
- 
-    // return view('posts.index');
+  public function update(StorePost $request, $id ){
+    
+    $post = Post::findorfail($id);
+
+    $validated = $request->validated();
+    
+    $post->fill($validated);
+
+    $post->save();
+    
+    session()->flash('status','The Post was updated');
+    
+    return redirect()->route('posts.show',['post' => $post->id]);
   }
 
 }

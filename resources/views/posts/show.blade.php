@@ -1,4 +1,5 @@
 @extends('layouts.app')
-{{  $post['title'] }}
 
-{{  $post['content'] }}
+{{  $post->title  }}
+
+{{  $post->content}}
