@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PostsController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
@@ -23,4 +24,11 @@ Route::post('/login',[UserController::class ,'login']);
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::resource('posts',PostsController::class);
+
+// Route::get('/posts',[PostsController::class ,'index'])->name('posts.index');
+// Route::get('/posts/{id}',[PostsController::class ,'show'])->name('posts.show');
+// Route::get('/posts/{id}',[PostsController::class ,'delete'])->name('posts.delete');
+// Route::get('/posts/{id}',[PostsController::class ,'delete'])->name('posts.delete');
