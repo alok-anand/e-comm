@@ -24,7 +24,8 @@ Route::post('/login',[UserController::class ,'login']);
 
 Auth::routes();
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+//Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', [App\Http\Controllers\ProductsController::class, 'index'])->name('products.index');
 
 Route::resource('posts',PostsController::class);
 

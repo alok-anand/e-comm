@@ -27,7 +27,12 @@
     height: 500px;
     padding-top: 100px;
 }
-
+.slider-img{
+    height: 500px !important;
+}
+.custom-product{
+    height:700px !important;
+}
 </style>
 
 
