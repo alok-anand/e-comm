@@ -12,6 +12,13 @@ use App\Models\Post;
 Class PostsController extends Controller
 {
 
+  public function __construct()
+  {
+    $this->middleware('auth.basic');
+  }  
+  
+
+
   public function index(){
       
     $posts = Post::all();

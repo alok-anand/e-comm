@@ -9,13 +9,19 @@
 
         <div>{{  $post->content}}</div>
 
-    <form action="{{ route('posts.destroy',['post'=>$post->id]) }}" method= "POST">
+        <div>
+    <form action="{{ route('posts.destroy',['post'=> $post->id]) }}" method= "POST">
        
         @csrf
         @method('delete')
         <input type="submit" value="Delete">
     </form>
+    </div>
+    <div>
+        <a href="{{ route('posts.edit',['post' => $post->id]) }}">Edit</a>
+    </div>
 </li>
+
 
 @endforeach
 </ul>
